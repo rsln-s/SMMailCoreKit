@@ -7,7 +7,6 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
 //! Project version number for SMMailCoreKit.
 FOUNDATION_EXPORT double SMMailCoreKitVersionNumber;
 

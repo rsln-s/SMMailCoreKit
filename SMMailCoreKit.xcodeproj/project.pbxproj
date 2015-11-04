@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		44295D521BE67CC100A266DB /* SMMailCoreKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 44295D511BE67CC100A266DB /* SMMailCoreKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		44295D5A1BE67FDE00A266DB /* MailCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44295D591BE67FDE00A266DB /* MailCore.framework */; };
+		44295D5C1BE6800200A266DB /* SMMailCoreWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44295D5B1BE6800200A266DB /* SMMailCoreWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		44295D4E1BE67CC100A266DB /* SMMailCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SMMailCoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44295D511BE67CC100A266DB /* SMMailCoreKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMMailCoreKit.h; sourceTree = "<group>"; };
 		44295D531BE67CC100A266DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44295D591BE67FDE00A266DB /* MailCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MailCore.framework; path = Carthage/Build/Mac/MailCore.framework; sourceTree = "<group>"; };
+		44295D5B1BE6800200A266DB /* SMMailCoreWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMMailCoreWrapper.swift; path = ../SMMailCoreWrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -21,6 +25,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44295D5A1BE67FDE00A266DB /* MailCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -30,6 +35,7 @@
 		44295D441BE67CC100A266DB = {
 			isa = PBXGroup;
 			children = (
+				44295D591BE67FDE00A266DB /* MailCore.framework */,
 				44295D501BE67CC100A266DB /* SMMailCoreKit */,
 				44295D4F1BE67CC100A266DB /* Products */,
 			);
@@ -47,6 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				44295D511BE67CC100A266DB /* SMMailCoreKit.h */,
+				44295D5B1BE6800200A266DB /* SMMailCoreWrapper.swift */,
 				44295D531BE67CC100A266DB /* Info.plist */,
 			);
 			path = SMMailCoreKit;
@@ -74,6 +81,7 @@
 				44295D4A1BE67CC100A266DB /* Frameworks */,
 				44295D4B1BE67CC100A266DB /* Headers */,
 				44295D4C1BE67CC100A266DB /* Resources */,
+				44295D5D1BE6806A00A266DB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -125,11 +133,29 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		44295D5D1BE6806A00A266DB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/MailCore.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		44295D491BE67CC100A266DB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44295D5C1BE6800200A266DB /* SMMailCoreWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,11 +251,16 @@
 		44295D571BE67CC100A266DB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = SMMailCoreKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -237,17 +268,24 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mipt.SMMailCoreKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		44295D581BE67CC100A266DB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = SMMailCoreKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -255,6 +293,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mipt.SMMailCoreKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};
@@ -277,6 +316,7 @@
 				44295D581BE67CC100A266DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
